@@ -70,7 +70,7 @@
 					<div class="lead">
 						<p>Use this module to assist asserting gateway locations on the Helium Network. You will be able to both change the
 						location of the hotspot, and update its antenna gain and elevation.</p>
-						<p>For example creating and signing an assert location transaction with <a href="Location.html#assertLocationTxn">assertLocationTxn</a> and calculating its fees
+						<p>For example creating and signing an assert location transaction with <a href="WalletLink.html#SignHotspotRequest.__type-4.assertLocationTxn">assertLocationTxn</a> and calculating its fees
 						with <a href="Location.html#calculateAssertLocFee">calculateAssertLocFee</a>.</p>
 						<a href="#import-the-module" id="import-the-module" style="color: inherit; text-decoration: none;">
 							<h2>Import the module</h2>
@@ -83,7 +83,7 @@
 						<p>To assert a gateway&#39;s location you must create a signed
 							<a href="https://helium.github.io/helium-js/classes/transactions.AssertLocationV2.html">AssertLocationV2</a> transaction. This is done using
 							<a href="https://helium.github.io/helium-js/modules/transactions.html">@helium/transactions</a>, and packaged nicely into the
-							<a href="Location.html#assertLocationTxn">assertLocationTxn</a> function. This function will take in the required fields and return you a signed transaction.
+							<a href="WalletLink.html#SignHotspotRequest.__type-4.assertLocationTxn">assertLocationTxn</a> function. This function will take in the required fields and return you a signed transaction.
 							If you only want to change gain and elevation you do not need to pass in the lat and lng properties. Likewise, if you
 							only want to change location don&#39;t pass in the gain and elevation. The transaction fee depends on what is passed, see the
 						fee section below to learn more.</p>
@@ -132,12 +132,15 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#assertLocationTxn" class="tsd-kind-icon">assert<wbr>Location<wbr>Txn</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#calculateAssertLocFee" class="tsd-kind-icon">calculate<wbr>Assert<wbr>Loc<wbr>Fee</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#createAndSignAssertLocationTxn" class="tsd-kind-icon">create<wbr>And<wbr>Sign<wbr>Assert<wbr>Location<wbr>Txn</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#createLocationTxn" class="tsd-kind-icon">create<wbr>Location<wbr>Txn</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#getH3Location" class="tsd-kind-icon">get<wbr>H3Location</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#hasFreeLocationAssert" class="tsd-kind-icon">has<wbr>Free<wbr>Location<wbr>Assert</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#loadLocationFeeData" class="tsd-kind-icon">load<wbr>Location<wbr>Fee<wbr>Data</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#makeAssertLocTxn" class="tsd-kind-icon">make<wbr>Assert<wbr>Loc<wbr>Txn</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#signAssertLocTxn" class="tsd-kind-icon">sign<wbr>Assert<wbr>Loc<wbr>Txn</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="Location.html#txnFromString" class="tsd-kind-icon">txn<wbr>From<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
@@ -146,16 +149,53 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="assertLocationTxn" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> assert<wbr>Location<wbr>Txn</h3>
+					<a name="calculateAssertLocFee" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> calculate<wbr>Assert<wbr>Loc<wbr>Fee</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
-						<li class="tsd-signature tsd-kind-icon">assert<wbr>Location<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>currentLocation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dataOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>decimalGain<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>elevation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gateway<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>lat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>lng<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>locationNonceLimit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>makerAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ownerKeypairRaw<span class="tsd-signature-symbol">: </span><a href="../interfaces/Account.SodiumKeyPair.html" class="tsd-signature-type" data-tsd-kind="Interface">SodiumKeyPair</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">calculate<wbr>Assert<wbr>Loc<wbr>Fee<span class="tsd-signature-symbol">(</span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L120">src/utils/assertLocation.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L40">src/utils/assertLocation.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ownerB58: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>payerB58: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>nonce: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>staking<wbr>Fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="createAndSignAssertLocationTxn" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>And<wbr>Sign<wbr>Assert<wbr>Location<wbr>Txn</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>And<wbr>Sign<wbr>Assert<wbr>Location<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>currentLocation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dataOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>decimalGain<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>elevation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gateway<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>lat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>lng<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>locationNonceLimit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>makerAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ownerKeypairRaw<span class="tsd-signature-symbol">: </span><a href="../interfaces/Account.SodiumKeyPair.html" class="tsd-signature-type" data-tsd-kind="Interface">SodiumKeyPair</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L154">src/utils/assertLocation.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -212,39 +252,57 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="calculateAssertLocFee" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> calculate<wbr>Assert<wbr>Loc<wbr>Fee</h3>
+					<a name="createLocationTxn" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Location<wbr>Txn</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
-						<li class="tsd-signature tsd-kind-icon">calculate<wbr>Assert<wbr>Loc<wbr>Fee<span class="tsd-signature-symbol">(</span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Location<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>currentLocation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dataOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>decimalGain<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>elevation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gateway<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>lat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>lng<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>locationNonceLimit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>makerAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L40">src/utils/assertLocation.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L225">src/utils/assertLocation.ts:225</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ownerB58: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>payerB58: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>nonce: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>currentLocation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dataOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>decimalGain<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>elevation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gateway<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>lat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>lng<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>locationNonceLimit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>makerAddress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> current<wbr>Location<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> data<wbr>Only<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> decimal<wbr>Gain<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> elevation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>gateway<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>lat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>lng<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>location<wbr>Nonce<wbr>Limit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>maker<wbr>Address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>owner<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h4>
-							<ul class="tsd-parameters">
-								<li class="tsd-parameter">
-									<h5>fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li class="tsd-parameter">
-									<h5>staking<wbr>Fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -258,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L25">src/utils/assertLocation.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L25">src/utils/assertLocation.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,7 +354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L33">src/utils/assertLocation.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L33">src/utils/assertLocation.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -329,7 +387,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L209">src/utils/assertLocation.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L298">src/utils/assertLocation.ts:298</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -373,13 +431,62 @@
 					<a name="makeAssertLocTxn" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> make<wbr>Assert<wbr>Loc<wbr>Txn</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
-						<li class="tsd-signature tsd-kind-icon">make<wbr>Assert<wbr>Loc<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>elevation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gatewayB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ownerKeypairRaw<span class="tsd-signature-symbol">: </span><a href="../interfaces/Account.SodiumKeyPair.html" class="tsd-signature-type" data-tsd-kind="Interface">SodiumKeyPair</a><span class="tsd-signature-symbol">; </span>payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Assert<wbr>Loc<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>elevation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gatewayB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/b20c66b/src/utils/assertLocation.ts#L61">src/utils/assertLocation.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L61">src/utils/assertLocation.ts:61</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>elevation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gatewayB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>elevation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>gain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>gateway<wbr>B58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>owner<wbr>B58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>payer<wbr>B58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>staking<wbr>Fee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="signAssertLocTxn" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> sign<wbr>Assert<wbr>Loc<wbr>Txn</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">sign<wbr>Assert<wbr>Loc<wbr>Txn<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>elevation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>gatewayB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nonce<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>ownerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ownerKeypairRaw<span class="tsd-signature-symbol">: </span><a href="../interfaces/Account.SodiumKeyPair.html" class="tsd-signature-type" data-tsd-kind="Interface">SodiumKeyPair</a><span class="tsd-signature-symbol">; </span>payerB58<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>stakingFee<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L96">src/utils/assertLocation.ts:96</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -421,6 +528,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
+					<a name="txnFromString" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> txn<wbr>From<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
+						<li class="tsd-signature tsd-kind-icon">txn<wbr>From<wbr>String<span class="tsd-signature-symbol">(</span>txnStr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/4e23c5a/src/utils/assertLocation.ts#L136">src/utils/assertLocation.ts:136</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>txnStr: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/AssertLocationV2.html" class="tsd-signature-type" data-tsd-kind="Class">AssertLocationV2</a></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -441,15 +571,21 @@
 					<li class=" tsd-kind-namespace">
 						<a href="Onboarding.html">Onboarding</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="WalletLink.html">Wallet<wbr>Link</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="Location.html#assertLocationTxn" class="tsd-kind-icon">assert<wbr>Location<wbr>Txn</a>
+						<a href="Location.html#calculateAssertLocFee" class="tsd-kind-icon">calculate<wbr>Assert<wbr>Loc<wbr>Fee</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="Location.html#calculateAssertLocFee" class="tsd-kind-icon">calculate<wbr>Assert<wbr>Loc<wbr>Fee</a>
+						<a href="Location.html#createAndSignAssertLocationTxn" class="tsd-kind-icon">create<wbr>And<wbr>Sign<wbr>Assert<wbr>Location<wbr>Txn</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Location.html#createLocationTxn" class="tsd-kind-icon">create<wbr>Location<wbr>Txn</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
 						<a href="Location.html#getH3Location" class="tsd-kind-icon">get<wbr>H3Location</a>
@@ -462,6 +598,12 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-namespace">
 						<a href="Location.html#makeAssertLocTxn" class="tsd-kind-icon">make<wbr>Assert<wbr>Loc<wbr>Txn</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Location.html#signAssertLocTxn" class="tsd-kind-icon">sign<wbr>Assert<wbr>Loc<wbr>Txn</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace">
+						<a href="Location.html#txnFromString" class="tsd-kind-icon">txn<wbr>From<wbr>String</a>
 					</li>
 				</ul>
 			</nav>
