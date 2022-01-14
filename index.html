@@ -85,19 +85,13 @@
 				<p>Please browse the <a href="https://helium.github.io/react-native-helium/index.html">documentation</a> for more information.</p>
 				<p>You can import the different modules such as <a href="https://helium.github.io/react-native-helium/modules/Account.html">Account</a>,
 					<a href="https://helium.github.io/react-native-helium/modules/Location.html">Location</a>,
-					<a href="https://helium.github.io/react-native-helium/modules/Onboarding.html">Onboarding</a>,
 					<a href="https://helium.github.io/react-native-helium/interfaces/HotspotBleManager.html">HotspotBleManager</a>,
 					<a href="https://helium.github.io/react-native-helium/docs/modules.html#heliumHttpClient">heliumHttpClient</a>,
 				and <a href="https://helium.github.io/react-native-helium/modules/AddGateway.html">AddGateway</a> to get started.</p>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">Account</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">Location</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">Onboarding</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">AddGateway</span><span style="color: #000000">,</span>
-<span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Account</span><span style="color: #000000">, </span><span style="color: #001080">Location</span><span style="color: #000000">, </span><span style="color: #001080">AddGateway</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #008000">// example usage of Account.createKeypair</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">keypairRaw</span><span style="color: #000000">, </span><span style="color: #0070C1">address</span><span style="color: #000000">, </span><span style="color: #0070C1">mnemonic</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">Account</span><span style="color: #000000">.</span><span style="color: #795E26">createKeypair</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">keypairRaw</span><span style="color: #000000">, </span><span style="color: #0070C1">address</span><span style="color: #000000">, </span><span style="color: #0070C1">mnemonic</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">Account</span><span style="color: #000000">.</span><span style="color: #795E26">createKeypair</span><span style="color: #000000">();</span>
 </code></pre>
 				<a href="#example-app" id="example-app" style="color: inherit; text-decoration: none;">
 					<h2>Example App</h2>
@@ -111,10 +105,10 @@
 				<a href="#import-the-bluetooth-modules" id="import-the-bluetooth-modules" style="color: inherit; text-decoration: none;">
 					<h3>Import the Bluetooth modules</h3>
 				</a>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HotspotBleProvider</span><span style="color: #000000">, </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HotspotBleProvider</span><span style="color: #000000">, </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #008000">// some examples of the functions you may want to use</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">startScan</span><span style="color: #000000">, </span><span style="color: #0070C1">stopScan</span><span style="color: #000000">, </span><span style="color: #0070C1">connect</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">startScan</span><span style="color: #000000">, </span><span style="color: #0070C1">stopScan</span><span style="color: #000000">, </span><span style="color: #0070C1">connect</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">();</span>
 </code></pre>
 				<a href="#getting-started-with-bluetooth" id="getting-started-with-bluetooth" style="color: inherit; text-decoration: none;">
 					<h3>Getting Started with Bluetooth</h3>
@@ -122,14 +116,14 @@
 				<p>In order to get started with the <a href="interfaces/HotspotBleManager.html">HotspotBleManager</a> you must first wrap your root app component in a
 				<a href="modules.html#HotspotBleProvider">HotspotBleProvider</a>.</p>
 				<p>For example:</p>
-				<pre><code class="language-tsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react&#039;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HotspotBleProvider</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span>
+				<pre><code class="language-tsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">HotspotBleProvider</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">App</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> (</span>
 <span style="color: #000000">  </span><span style="color: #800000">&lt;</span><span style="color: #267F99">HotspotBleProvider</span><span style="color: #800000">&gt;</span>
 <span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">YourRootAppComponent</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
 <span style="color: #000000">  </span><span style="color: #800000">&lt;/</span><span style="color: #267F99">HotspotBleProvider</span><span style="color: #800000">&gt;</span>
-<span style="color: #000000">)</span>
+<span style="color: #000000">);</span>
 </code></pre>
 				<p>You are now ready to use the <a href="interfaces/HotspotBleManager.html">HotspotBleManager</a> throughout your application.</p>
 				<a href="#scanning-for-hotspots" id="scanning-for-hotspots" style="color: inherit; text-decoration: none;">
@@ -138,35 +132,35 @@
 				<p>You can use the <a href="interfaces/HotspotBleManager.html">HotspotBleManager</a> to <a href="interfaces/HotspotBleManager.html#startScan">startScan</a>, <a href="interfaces/HotspotBleManager.html#stopScan">stopScan</a>, and read information from <a href="interfaces/HotspotBleManager.html#scannedDevices">scannedDevices</a>. Check
 				out the <a href="classes/Device.html">Device</a> docs for more info on scanned devices.</p>
 				<p>For a full working example see the <a href="https://github.com/helium/react-native-helium/blob/main/example/src/HotspotBLE/ScanHotspots.tsx">example app</a>.</p>
-				<pre><code class="language-tsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000">, { </span><span style="color: #001080">useEffect</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react&#039;</span>
-<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span>
+				<pre><code class="language-tsx"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000">, { </span><span style="color: #001080">useEffect</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">startScan</span><span style="color: #000000">, </span><span style="color: #0070C1">stopScan</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">startScan</span><span style="color: #000000">, </span><span style="color: #0070C1">stopScan</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">();</span>
 
 <span style="color: #795E26">useEffect</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #008000">// you would probably want to call this on a button click, we scan right away</span>
 <span style="color: #000000">  </span><span style="color: #795E26">startScan</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">error</span><span style="color: #000000">) {</span>
-<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">)</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">);</span>
 <span style="color: #000000">    }</span>
-<span style="color: #000000">  })</span>
-<span style="color: #000000">}, [])</span>
+<span style="color: #000000">  });</span>
+<span style="color: #000000">}, []);</span>
 
 <span style="color: #795E26">useEffect</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #008000">// you would probably want to call this on a button click, but we stop after 10 seconds</span>
-<span style="color: #000000">  </span><span style="color: #795E26">setTimeout</span><span style="color: #000000">(</span><span style="color: #001080">stopScan</span><span style="color: #000000">, </span><span style="color: #098658">10000</span><span style="color: #000000">)</span>
-<span style="color: #000000">}, [])</span>
+<span style="color: #000000">  </span><span style="color: #795E26">setTimeout</span><span style="color: #000000">(</span><span style="color: #001080">stopScan</span><span style="color: #000000">, </span><span style="color: #098658">10000</span><span style="color: #000000">);</span>
+<span style="color: #000000">}, []);</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">ScanComponent</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Text</span><span style="color: #800000">&gt;</span><span style="color: #0000FF">{</span><span style="color: #001080">scannedDevices</span><span style="color: #000000FF">[</span><span style="color: #098658">0</span><span style="color: #000000FF">]?.</span><span style="color: #001080">localName</span><span style="color: #0000FF">}</span><span style="color: #800000">&lt;/</span><span style="color: #267F99">Text</span><span style="color: #800000">&gt;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">ScanComponent</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Text</span><span style="color: #800000">&gt;</span><span style="color: #0000FF">{</span><span style="color: #001080">scannedDevices</span><span style="color: #000000FF">[</span><span style="color: #098658">0</span><span style="color: #000000FF">]?.</span><span style="color: #001080">localName</span><span style="color: #0000FF">}</span><span style="color: #800000">&lt;/</span><span style="color: #267F99">Text</span><span style="color: #800000">&gt;</span><span style="color: #000000">;</span>
 </code></pre>
 				<a href="#connect-to-a-hotspot" id="connect-to-a-hotspot" style="color: inherit; text-decoration: none;">
 					<h3>Connect to a Hotspot</h3>
 				</a>
 				<p>After scanning, you can connect to <a href="interfaces/HotspotBleManager.html#scannedDevices">scannedDevices</a> by calling <a href="classes/Device.html#connect">connect</a>.</p>
-				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span>
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">useHotspotBle</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@helium/react-native-sdk&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">connect</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">()</span>
-<span style="color: #795E26">connect</span><span style="color: #000000">(</span><span style="color: #001080">scannedDevices</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">])</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">connect</span><span style="color: #000000">, </span><span style="color: #0070C1">scannedDevices</span><span style="color: #000000"> } = </span><span style="color: #795E26">useHotspotBle</span><span style="color: #000000">();</span>
+<span style="color: #795E26">connect</span><span style="color: #000000">(</span><span style="color: #001080">scannedDevices</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">]);</span>
 </code></pre>
 				<a href="#interact-with-a-connected-hotspot" id="interact-with-a-connected-hotspot" style="color: inherit; text-decoration: none;">
 					<h3>Interact with a connected Hotspot</h3>
@@ -202,9 +196,6 @@
 					</li>
 					<li class=" tsd-kind-namespace">
 						<a href="modules/Location.html">Location</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="modules/Onboarding.html">Onboarding</a>
 					</li>
 					<li class=" tsd-kind-namespace">
 						<a href="modules/WalletLink.html">Wallet<wbr>Link</a>
@@ -258,6 +249,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/HotspotBleManager.html" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Manager</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/OnboardingManager.html" class="tsd-kind-icon">Onboarding<wbr>Manager</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#DiagnosticInfo" class="tsd-kind-icon">Diagnostic<wbr>Info</a>
 					</li>
@@ -268,6 +262,9 @@
 						<a href="modules.html#HotspotBleProvider" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#OnboardingProvider" class="tsd-kind-icon">Onboarding<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#createHttpClient" class="tsd-kind-icon">create<wbr>Http<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -275,6 +272,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#useHotspotBle" class="tsd-kind-icon">use<wbr>Hotspot<wbr>Ble</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#useOnboarding" class="tsd-kind-icon">use<wbr>Onboarding</a>
 					</li>
 				</ul>
 			</nav>

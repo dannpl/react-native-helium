@@ -67,7 +67,6 @@
 								<li class="tsd-kind-namespace"><a href="modules/Account.html" class="tsd-kind-icon">Account</a></li>
 								<li class="tsd-kind-namespace"><a href="modules/AddGateway.html" class="tsd-kind-icon">Add<wbr>Gateway</a></li>
 								<li class="tsd-kind-namespace"><a href="modules/Location.html" class="tsd-kind-icon">Location</a></li>
-								<li class="tsd-kind-namespace"><a href="modules/Onboarding.html" class="tsd-kind-icon">Onboarding</a></li>
 								<li class="tsd-kind-namespace"><a href="modules/WalletLink.html" class="tsd-kind-icon">Wallet<wbr>Link</a></li>
 							</ul>
 						</section>
@@ -99,6 +98,7 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface"><a href="interfaces/HotspotBleManager.html" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Manager</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/OnboardingManager.html" class="tsd-kind-icon">Onboarding<wbr>Manager</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -117,9 +117,11 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function"><a href="modules.html#HotspotBleProvider" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Provider</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#OnboardingProvider" class="tsd-kind-icon">Onboarding<wbr>Provider</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#createHttpClient" class="tsd-kind-icon">create<wbr>Http<wbr>Client</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#multiply" class="tsd-kind-icon">multiply</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#useHotspotBle" class="tsd-kind-icon">use<wbr>Hotspot<wbr>Ble</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#useOnboarding" class="tsd-kind-icon">use<wbr>Onboarding</a></li>
 							</ul>
 						</section>
 					</div>
@@ -133,7 +135,7 @@
 					<div class="tsd-signature tsd-kind-icon">Diagnostic<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>connected<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>dialable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>disk<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>eth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>fw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>ip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>nat_type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>wifi<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/HotspotBle/bleParse.ts#L13">src/HotspotBle/bleParse.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/HotspotBle/bleParse.ts#L13">src/HotspotBle/bleParse.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -178,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">helium<wbr>Http<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">default</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/utils/httpClient.ts#L13">src/utils/httpClient.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/utils/httpClient.ts#L13">src/utils/httpClient.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/HotspotBle/HotspotBleProvider.tsx#L56">src/HotspotBle/HotspotBleProvider.tsx:56</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/HotspotBle/HotspotBleProvider.tsx#L56">src/HotspotBle/HotspotBleProvider.tsx:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,6 +237,53 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="OnboardingProvider" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Onboarding<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">Onboarding<wbr>Provider<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>baseUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactNode</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/Onboarding/OnboardingProvider.tsx#L37">src/Onboarding/OnboardingProvider.tsx:37</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This is a react component that is required to use the <a href="interfaces/OnboardingManager.html">OnboardingManager</a>.
+									It must wrap your apps root component.</p>
+								</div>
+								<p>For example:</p>
+								<pre><code class="language-tsx"><span style="color: #800000">&lt;</span><span style="color: #267F99">OnboardingProvider</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">YourRootAppComponent</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
+<span style="color: #800000">&lt;/</span><span style="color: #267F99">OnboardingProvider</span><span style="color: #800000">&gt;</span>
+</code></pre>
+								<p>or if you will be using your own onboarding server</p>
+								<pre><code class="language-tsx"><span style="color: #800000">&lt;</span><span style="color: #267F99">OnboardingProvider</span><span style="color: #000000"> </span><span style="color: #FF0000">baseUrl</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;https://youronboardingserver.com&quot;</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">YourRootAppComponent</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
+<span style="color: #800000">&lt;/</span><span style="color: #267F99">OnboardingProvider</span><span style="color: #800000">&gt;</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-symbol">{ </span>baseUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactNode</span><span class="tsd-signature-symbol"> }</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> base<wbr>Url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactNode</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="createHttpClient" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Http<wbr>Client</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -244,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/utils/httpClient.ts#L26">src/utils/httpClient.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/utils/httpClient.ts#L26">src/utils/httpClient.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -279,7 +328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/index.tsx#L28">src/index.tsx:28</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/index.tsx#L31">src/index.tsx:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -305,7 +354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/32f2deb/src/HotspotBle/HotspotBleProvider.tsx#L69">src/HotspotBle/HotspotBleProvider.tsx:69</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/HotspotBle/HotspotBleProvider.tsx#L69">src/HotspotBle/HotspotBleProvider.tsx:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -318,6 +367,32 @@
 </code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/HotspotBleManager.html" class="tsd-signature-type" data-tsd-kind="Interface">HotspotBleManager</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="useOnboarding" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> use<wbr>Onboarding</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Onboarding<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/OnboardingManager.html" class="tsd-signature-type" data-tsd-kind="Interface">OnboardingManager</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/419d54e/src/Onboarding/OnboardingProvider.tsx#L56">src/Onboarding/OnboardingProvider.tsx:56</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Provides the <a href="interfaces/OnboardingManager.html">OnboardingManager</a> instance. You must wrap your root app
+									component in an <a href="modules.html#OnboardingProvider">OnboardingProvider</a> to use this.</p>
+								</div>
+								<p>For example:</p>
+								<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">getOnboardingRecord</span><span style="color: #000000">, </span><span style="color: #0070C1">postPaymentTransaction</span><span style="color: #000000"> } = </span><span style="color: #795E26">useOnboarding</span><span style="color: #000000">()}</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/OnboardingManager.html" class="tsd-signature-type" data-tsd-kind="Interface">OnboardingManager</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -337,9 +412,6 @@
 					</li>
 					<li class=" tsd-kind-namespace">
 						<a href="modules/Location.html">Location</a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="modules/Onboarding.html">Onboarding</a>
 					</li>
 					<li class=" tsd-kind-namespace">
 						<a href="modules/WalletLink.html">Wallet<wbr>Link</a>
@@ -393,6 +465,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/HotspotBleManager.html" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Manager</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/OnboardingManager.html" class="tsd-kind-icon">Onboarding<wbr>Manager</a>
+					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#DiagnosticInfo" class="tsd-kind-icon">Diagnostic<wbr>Info</a>
 					</li>
@@ -403,6 +478,9 @@
 						<a href="modules.html#HotspotBleProvider" class="tsd-kind-icon">Hotspot<wbr>Ble<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#OnboardingProvider" class="tsd-kind-icon">Onboarding<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#createHttpClient" class="tsd-kind-icon">create<wbr>Http<wbr>Client</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -410,6 +488,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#useHotspotBle" class="tsd-kind-icon">use<wbr>Hotspot<wbr>Ble</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#useOnboarding" class="tsd-kind-icon">use<wbr>Onboarding</a>
 					</li>
 				</ul>
 			</nav>
