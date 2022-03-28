@@ -78,11 +78,20 @@
 						<a href="#use-the-module" id="use-the-module" style="color: inherit; text-decoration: none;">
 							<h2>Use the module</h2>
 						</a>
+						<p>Follow these steps to use deep links in your app:</p>
+						<ol>
+							<li>Call <a href="WalletLink.html#createWalletLinkUrl">createWalletLinkUrl</a> to create a deeplink from your app to an app capable of signing transactions (e.g. Helium Hotspot). See &quot;Request a wallet link token&quot; below.</li>
+							<li>Open this <code>createWalletLinkUrl</code> using <code>Linking.openURL(url)</code>.</li>
+							<li>This will open the authenticated app (e.g. Helium Hotspot) and approve link permission, creating a wallet link token and passing it back to your app via the callback url.</li>
+							<li>Use <a href="WalletLink.html#createUpdateHotspotUrl">createUpdateHotspotUrl</a> to create a deeplink to sign Add Gateway, Assert Location and Transfer Hotspot transactions. You must pass the unsigned transaction and the wallet link token. See &quot;Request signed gateway transactions&quot; below.</li>
+							<li>Open this <code>createUpdateHotspotUrl</code> using <code>Linking.openURL(url)</code>. The authorized app will call back with the signed transaction.</li>
+							<li>Submit the signed transaction to the blockchain using the <a href="https://docs.helium.com/api/blockchain/pending-transactions#submit-a-new-transaction">Helium Blockchain API</a> or <a href="https://helium.github.io/helium-js/index.html">Helium JS</a> e.g. <code>heliumHttpClient.transactions.submit(txn)</code></li>
+						</ol>
 						<a href="#request-a-wallet-link-token" id="request-a-wallet-link-token" style="color: inherit; text-decoration: none;">
 							<h3>Request a wallet link token</h3>
 						</a>
 						<p>The first step to deep linking is to request a token from an app capable of signing transactions (e.g. Helium Hotspot).
-							To do this you must use <a href="WalletLink.html#createWalletLinkUrl">createWalletLinkUrl</a> to create a deep link URL for the app capable of signing transactions.
+							To do this you must use <a href="WalletLink.html#createWalletLinkUrl">createWalletLinkUrl</a> to create a deep link URL which will provide your app with a wallet link token.
 							This will then redirect the user to the authenticated app (e.g. Helium Hotspot) and create a wallet link token. The token
 							will then be passed back to your app via deep link back to the <code>callbackUrl</code>. This token should then be saved in your
 						app, it is required when requesting a signed transaction.</p>
@@ -101,7 +110,7 @@
 						<a href="#request-signed-gateway-transactions-add-gateway-assert-location-transfer-hotspot" id="request-signed-gateway-transactions-add-gateway-assert-location-transfer-hotspot" style="color: inherit; text-decoration: none;">
 							<h3>Request signed gateway transactions (Add Gateway, Assert Location, Transfer Hotspot)</h3>
 						</a>
-						<p>Request signing a gateway transactions by a supported app (e.g. Helium Hotspot). This is used for assert location,
+						<p>Request signing of gateway transactions by a supported app (e.g. Helium Hotspot). This is used for assert location,
 							add gateway, and transfer hotspot transactions. Only one transaction should be passed at a time. After creating the url
 							and opening the deep link, the app capable of signing transactions (e.g. Helium Hotspot) will be opened and the user
 							must confirm the information. After confirmation the transaction passed will be signed and passed back to your app via
@@ -112,14 +121,26 @@
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">getBundleId</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react-native-device-info&#039;</span><span style="color: #000000">;</span>
 <span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Linking</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react-native&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">url</span><span style="color: #000000"> = </span><span style="color: #001080">WalletLink</span><span style="color: #000000">.</span><span style="color: #795E26">createUpdateHotspotUrl</span><span style="color: #000000">({</span>
-<span style="color: #000000">  </span><span style="color: #001080">assertLocationTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;assert_location_v2&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">addGatewayTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;add_gateway_v1&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">transferHotspotTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;add_transfer_v2&#039;</span><span style="color: #000000">,</span>
+<span style="color: #008000">// sign an add_gateway_v1 transaction</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">addUrl</span><span style="color: #000000"> = </span><span style="color: #001080">WalletLink</span><span style="color: #000000">.</span><span style="color: #795E26">createUpdateHotspotUrl</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">addGatewayTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;add_gateway_v1&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// unsigned add_gateway_v1 txn string</span>
 <span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;your_token&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">});</span>
+<span style="color: #001080">Linking</span><span style="color: #000000">.</span><span style="color: #795E26">openURL</span><span style="color: #000000">(</span><span style="color: #001080">addUrl</span><span style="color: #000000">);</span>
 
-<span style="color: #001080">Linking</span><span style="color: #000000">.</span><span style="color: #795E26">openURL</span><span style="color: #000000">(</span><span style="color: #001080">url</span><span style="color: #000000">);</span>
+<span style="color: #008000">// sign an assert_location_v2 transaction</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">assertUrl</span><span style="color: #000000"> = </span><span style="color: #001080">WalletLink</span><span style="color: #000000">.</span><span style="color: #795E26">createUpdateHotspotUrl</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">assertLocationTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;assert_location_v2&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// unsigned assert_location_v2 txn string</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;your_token&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+<span style="color: #001080">Linking</span><span style="color: #000000">.</span><span style="color: #795E26">openURL</span><span style="color: #000000">(</span><span style="color: #001080">assertUrl</span><span style="color: #000000">);</span>
+
+<span style="color: #008000">// sign a transfer_hotspot_v2 transaction</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">transferUrl</span><span style="color: #000000"> = </span><span style="color: #001080">WalletLink</span><span style="color: #000000">.</span><span style="color: #795E26">createUpdateHotspotUrl</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">transferHotspotTxn:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;transfer_hotspot_v2&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// unsigned transfer_hotspot_v2 txn string</span>
+<span style="color: #000000">  </span><span style="color: #001080">token:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;your_token&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+<span style="color: #001080">Linking</span><span style="color: #000000">.</span><span style="color: #795E26">openURL</span><span style="color: #000000">(</span><span style="color: #001080">transferUrl</span><span style="color: #000000">);</span>
 </code></pre>
 					</div>
 				</div>
@@ -167,7 +188,7 @@
 					<div class="tsd-signature tsd-kind-icon">Delegate<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>androidPackage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>appStoreId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>iosBundleId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>universalLink<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>urlScheme<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L58">src/WalletLink/index.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L58">src/WalletLink/index.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -200,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">Link<wbr>Wallet<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>callbackUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>requestAppId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L10">src/WalletLink/index.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L10">src/WalletLink/index.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -224,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">Link<wbr>Wallet<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;success&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_cancelled&quot;</span><span class="tsd-signature-symbol">; </span>token<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L26">src/WalletLink/index.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L26">src/WalletLink/index.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -245,7 +266,7 @@
 					<div class="tsd-signature tsd-kind-icon">Maker<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>androidPackage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>iosBundleId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>universalLink<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L51">src/WalletLink/index.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L51">src/WalletLink/index.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -272,7 +293,7 @@
 					<div class="tsd-signature tsd-kind-icon">Sign<wbr>Hotspot<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>addGatewayTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>assertLocationTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>transferHotspotTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L31">src/WalletLink/index.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L31">src/WalletLink/index.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -299,7 +320,7 @@
 					<div class="tsd-signature tsd-kind-icon">Sign<wbr>Hotspot<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>assertTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>gatewayAddress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>gatewayTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>status<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;success&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;token_not_found&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user_cancelled&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;gateway_not_found&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;invalid_link&quot;</span><span class="tsd-signature-symbol">; </span>transferTxn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L38">src/WalletLink/index.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L38">src/WalletLink/index.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -329,7 +350,7 @@
 					<div class="tsd-signature tsd-kind-icon">Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>address<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>appName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>callbackUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>requestAppId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>signature<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>signingAppId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L16">src/WalletLink/index.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L16">src/WalletLink/index.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -368,7 +389,7 @@
 					<div class="tsd-signature tsd-kind-icon">delegate<wbr>Apps<span class="tsd-signature-symbol">:</span> <a href="WalletLink.html#DelegateApp" class="tsd-signature-type" data-tsd-kind="Type alias">DelegateApp</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L79">src/WalletLink/index.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L79">src/WalletLink/index.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -390,7 +411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L133">src/WalletLink/index.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L133">src/WalletLink/index.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -425,7 +446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L146">src/WalletLink/index.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L146">src/WalletLink/index.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -457,12 +478,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L115">src/WalletLink/index.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L115">src/WalletLink/index.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates the url needed to add and/or assert location of a gateway.
+									<p>Creates the url needed to add, assert location, or transfer a gateway.
 									The signing app will callback with the signed Transactions</p>
 								</div>
 							</div>
@@ -486,7 +507,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L99">src/WalletLink/index.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L99">src/WalletLink/index.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -541,7 +562,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/112f573/src/WalletLink/index.ts#L84">src/WalletLink/index.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/helium/react-native-helium/blob/522d90d/src/WalletLink/index.ts#L84">src/WalletLink/index.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
